@@ -13,7 +13,7 @@
         created(){
             let self = this
             console.log('top10 created');
-            axios.get('http://localhost/topten').then((res)=>{
+            axios.get('http://localhost/hot/topten').then((res)=>{
                 self.topics = JSON.parse(res.data).topics
             })
         }
