@@ -17,7 +17,6 @@ app.use((req,res,next)=>{
 app.get('/*',(req,res,next)=>{
     var apiUrl = req.url
     request(`${baseUrl}${apiUrl}.js`,(error,response,body)=>{
-        console.log('suck',error,response.statusCode);
         if (!error && response.statusCode == 200) {
             res.json(body)
         }

@@ -8,14 +8,26 @@
 </template>
 <script>
     import axios from 'axios'
+    import {store} from '../store'
+    import { mapGetters } from 'vuex'
+
     export default{
-        data:()=>{return {header:"top10",topics:[]}},
+        name:'Top10',
+        data:()=>{return {header:"top10"}},
         created(){
             let self = this
-            console.log('top10 created');
+            console.log('top10 created',this.$store);
             axios.get('http://localhost/hot/topten').then((res)=>{
-                self.topics = JSON.parse(res.data).topics
+                const topics = JSON.parse(res.data).topics
+                store.commit({
+                    type:'GetTop10',
+                    topics
+                })
+                
             })
+        },
+        computed:{
+            ...mapGetters(['topics'])
         }
     }
 </script>
