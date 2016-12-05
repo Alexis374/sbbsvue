@@ -8,7 +8,7 @@
 </template>
 <script>
     import axios from 'axios'
-    import {store} from '../store'
+    import {store} from '../store'  // 只要store在声明Vue实例的时候注入到根组件，子组件就可以通过这样使用store
     import { mapGetters } from 'vuex'
 
     export default{
@@ -19,7 +19,7 @@
             console.log('top10 created',this.$store);
             axios.get('http://localhost/hot/topten').then((res)=>{
                 const topics = JSON.parse(res.data).topics
-                store.commit({
+                store.commit({ // commit 的参数有多种形式，详见文档
                     type:'GetTop10',
                     topics
                 })
