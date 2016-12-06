@@ -15,8 +15,11 @@ app.use((req,res,next)=>{
     获得响应后转发给浏览器端
 */
 app.get('/*',(req,res,next)=>{
-    var apiUrl = req.url
-    request(`${baseUrl}${apiUrl}.js`,(error,response,body)=>{
+    var apiUrl = req.url,mode="";
+    if(apiUrl.indexOf('/board')==0){
+        mode='?mode=2&limit=20'
+    }
+    request(`${baseUrl}${apiUrl}.js${mode}`,(error,response,body)=>{
         if (!error && response.statusCode == 200) {
             res.json(body)
         }
