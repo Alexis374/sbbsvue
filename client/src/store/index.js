@@ -7,11 +7,13 @@ export  const store = new Vuex.Store({
         top10Topics:[], // 十大话题
         Topic:[],      //一篇具体的帖子及回复
         Board:[], //板块信息
+        topBoards:[] // 热门板块
     },
     getters:{
         topics:state=>state.top10Topics,  // topics作为state.top10Topics的别名
         Topic:state=>state.Topic,
-        Board:state=>state.Board
+        Board:state=>state.Board,
+        TopBoards:state=>state.topBoards
     },
     mutations:{
         ['GetTop10'](state,payload){     //定义mutation handler
@@ -23,8 +25,12 @@ export  const store = new Vuex.Store({
         ['GetBoard'](state,payload){
             state.Board = payload.topics
         },
-        ['clearTopic'](state){
+        ['clear'](state){
             state.Topic = []
+            state.Board = []
+        },
+        ['GetTopBoards'](state,payload){
+            state.topBoards = payload.boards
         }
     },
     

@@ -16,6 +16,7 @@ app.use((req,res,next)=>{
 */
 app.get('/*',(req,res,next)=>{
     var apiUrl = req.url,mode="";
+    console.log(apiUrl);
     if(apiUrl.indexOf('/board')==0){
         mode='?mode=2&limit=20'
     }
